@@ -1,0 +1,29 @@
+<atlassian-plugin key="${atlassian.plugin.key}" name="${project.name}" plugins-version="2">
+    <plugin-info>
+        <description>${project.description}</description>
+        <version>${project.version}</version>
+        <vendor name="${project.organization.name}" url="${project.organization.url}" />
+        <param name="plugin-icon">images/pluginIcon.png</param>
+        <param name="plugin-logo">images/pluginLogo.png</param>
+    </plugin-info>
+
+    <!-- add our i18n resource -->
+    <resource type="i18n" name="i18n" location="jiraServletFilter"/>
+    
+    <!-- add our web resources -->
+    <web-resource key="jiraServletFilter-resources" name="jiraServletFilter Web Resources">
+        <dependency>com.atlassian.auiplugin:ajs</dependency>
+        
+        <resource type="download" name="jiraServletFilter.css" location="/css/jiraServletFilter.css"/>
+        <resource type="download" name="jiraServletFilter.js" location="/js/jiraServletFilter.js"/>
+        <resource type="download" name="images/" location="/images"/>
+
+        <context>jiraServletFilter</context>
+    </web-resource>
+     <servlet-filter name="Sample Servlet Filter" key="sampleServletFilter" class="org.chishingmateo.servlet.filter.SampleServletFilter" location="before-decoration" weight="200">
+        <description>This a sample of a filter servler for jira plugins.</description>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </servlet-filter>
+</atlassian-plugin>
